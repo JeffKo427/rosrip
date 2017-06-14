@@ -6,7 +6,7 @@ from cv_bridge import CvBridge, CvBridgeError
 import sys, time, os, string
 
 # PARAMETERS
-FEED_TOPIC = '/camera/left/image_raw'
+FEED_TOPIC = '/camera/left/image_raw/compressed'
 SAMPLING_FREQUENCY = 0.5    # in seconds
 PREFIX = ''                 # prepended to all saved image files
 SUFFIX = ''                 # appended to all saved image files
@@ -23,7 +23,9 @@ def write_image_to_file(data):
     except CvBridgeError as e:
         print(e)
     tsecs = time.gmtime(data.header.stamp.secs)
-    nsecs = data.header.stamp.nsecs
+    nsecs = str(data.header.stamp.nsecs)
+    while len(nsecs) != 9:
+        nsecs = '0' + nsecs
     timestamp = time.strftime("%Y-%m-%dT%H%M%S-" + str(nsecs), tsecs)
     filename = IMAGE_DIR + PREFIX + timestamp + SUFFIX + EXTENSION
     cv2.imwrite(filename, image)
