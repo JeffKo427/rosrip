@@ -7,6 +7,7 @@ import sys, time, os, string
 
 # PARAMETERS
 FEED_TOPIC = '/camera/left/image_raw/compressed'
+COMPRESSED = True
 SAMPLING_FREQUENCY = 0.5    # in seconds
 PREFIX = ''                 # prepended to all saved image files
 SUFFIX = ''                 # appended to all saved image files
@@ -19,7 +20,10 @@ BRIDGE = CvBridge()
 def write_image_to_file(data):
     """docstring"""
     try:
-        image = BRIDGE.imgmsg_to_cv2(data, "bgr8")
+        if COMPRESSED:
+            image = BRIDGE.compressed_imgmsg_to_cv2(data, "bgr8")
+        else:
+            image = BRIDGE.imgmsg_to_cv2(data, "bgr8")
     except CvBridgeError as e:
         print(e)
     tsecs = time.gmtime(data.header.stamp.secs)
