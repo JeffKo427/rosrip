@@ -16,6 +16,12 @@ ROSBAG_DIR = sys.argv[1]    # directory containing all rosbags to be played
 IMAGE_DIR = sys.argv[2]     # directory images should be written to
 # DO NOT CHANGE CODE BELOW THIS LINE
 
+if not ROSBAG_DIR.endswith('/'):
+    ROSBAG_DIR += '/'
+if not IMAGE_DIR.endswith('/'):
+    IMAGE_DIR += '/'
+
+
 BRIDGE = CvBridge()
 def write_image_to_file(data):
     """docstring"""
