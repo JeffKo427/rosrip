@@ -14,7 +14,7 @@ Example:
 Attributes:
     FEED_TOPIC (string): The name of the ROS topic over which the images you
         would like to extract were broadcast in the .bag file(s).
-    COMPRESSED (boolean): Whether the images were broadcast as CompressImage
+    COMPRESSED (boolean): Whether the images were broadcast as CompressedImage
         messages instead of Image messages.
     SAMPLING_FREQUENCY (int): How often you would like to sample a frame, in
         seconds. Technically an interval rather than a frequency.
