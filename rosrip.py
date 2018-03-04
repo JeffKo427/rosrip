@@ -6,9 +6,9 @@ from cv_bridge import CvBridge, CvBridgeError
 import sys, time, os, string
 
 # PARAMETERS
-FEED_TOPIC = '/camera/left/image_raw/compressed'
+FEED_TOPIC = '/stereo_camera/left/image_rect_color/compressed'
 COMPRESSED = True
-SAMPLING_FREQUENCY = 0.5    # in seconds
+SAMPLING_FREQUENCY = 5.0    # in seconds
 PREFIX = ''                 # prepended to all saved image files
 SUFFIX = ''                 # appended to all saved image files
 EXTENSION = '.png'          # should be either '.jpg' or '.png'
